@@ -20,16 +20,16 @@ var saveToPath: String = ""
 var libraryPath: String = ""
 var volumeSlider : float = 0.05
 var icons: Dictionary[String, Texture2D] = {}
+var libraryCache : SoundLibraryCache
 
 ## Private variables
-var _libraryCache : SoundLibraryCache
 var _libraryDock : SoundLibraryDock
 var _editorSettings : EditorSettings
 
 
 func _init() -> void:
-	_libraryCache = ResourceLoader.load(LIBRARY_CACHE, "SoundLibraryCache")
-	if not _libraryCache:
+	libraryCache = ResourceLoader.load(LIBRARY_CACHE, "SoundLibraryCache")
+	if not libraryCache:
 		print("Error: Could not load library cache resource.")
 	
 	
