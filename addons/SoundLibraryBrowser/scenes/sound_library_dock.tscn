@@ -155,7 +155,7 @@ text = "<"
 
 [node name="PageNumber" type="Label" parent="Box/Pageination"]
 layout_mode = 2
-text = "Page 1/[LOADING]"
+text = "Page 1/1"
 
 [node name="Forward" type="Button" parent="Box/Pageination"]
 layout_mode = 2
