@@ -1,0 +1,164 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtv6w01hgjreb"]
+
+[ext_resource type="Script" uid="uid://c3fcfqs3u5vrx" path="res://addons/SoundLibraryBrowser/src/SoundLibraryDock.gd" id="1_fqj87"]
+[ext_resource type="Script" uid="uid://bh22fjjm7tim3" path="res://addons/SoundLibraryBrowser/src/SoundLibraryPageination.gd" id="2_3u4dm"]
+
+[node name="SoundLibraryDock" type="PanelContainer"]
+custom_minimum_size = Vector2(256, 95)
+offset_right = 766.0
+offset_bottom = 226.0
+script = ExtResource("1_fqj87")
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+initial_position = 1
+
+[node name="Box" type="BoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+vertical = true
+
+[node name="Toolbar" type="BoxContainer" parent="Box"]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="Box/Toolbar"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Volume:"
+
+[node name="VolumeSlider" type="HSlider" parent="Box/Toolbar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+value = 1.0
+
+[node name="VSeparator" type="VSeparator" parent="Box/Toolbar"]
+layout_mode = 2
+
+[node name="SearchBar" type="LineEdit" parent="Box/Toolbar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+placeholder_text = "pirate music"
+
+[node name="SearchButton" type="Button" parent="Box/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Search"
+
+[node name="TotalSoundsLabel" type="Label" parent="Box/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Total: 0"
+
+[node name="VSeparator2" type="VSeparator" parent="Box/Toolbar"]
+layout_mode = 2
+
+[node name="ResyncButton" type="Button" parent="Box/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+text = "Resync"
+
+[node name="SettingsButton" type="Button" parent="Box/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Settings"
+
+[node name="HSeparator" type="HSeparator" parent="Box"]
+layout_mode = 2
+
+[node name="MessageContainer" type="BoxContainer" parent="Box"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MessageLabel" type="Label" parent="Box/MessageContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Loading..."
+
+[node name="PreviewsScrollContainer" type="ScrollContainer" parent="Box"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PreviewsContainer" type="VBoxContainer" parent="Box/PreviewsScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SettingsScrollContainer" type="ScrollContainer" parent="Box"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SettingsContainer" type="VBoxContainer" parent="Box/SettingsScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Box/SettingsScrollContainer/SettingsContainer"]
+layout_mode = 2
+text = "Where is your sound-library located? (network path or an absolute filesystem path)"
+
+[node name="LibraryPath" type="LineEdit" parent="Box/SettingsScrollContainer/SettingsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g. F:/Assets/SoundLibrary"
+
+[node name="Label2" type="Label" parent="Box/SettingsScrollContainer/SettingsContainer"]
+layout_mode = 2
+text = "Where should the sounds be copied to? (a \"res://\" path. I.E. somewhere in your project)"
+
+[node name="ProjectPath" type="LineEdit" parent="Box/SettingsScrollContainer/SettingsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g. res://Sounds"
+
+[node name="Label3" type="Label" parent="Box/SettingsScrollContainer/SettingsContainer"]
+layout_mode = 2
+text = "Should the same directory structure be used as in your library?"
+
+[node name="KeepDirectoryStructure" type="CheckBox" parent="Box/SettingsScrollContainer/SettingsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "(yes = directories will be created, no = all sounds will be put into the same project folder)"
+
+[node name="HSeparator2" type="HSeparator" parent="Box"]
+layout_mode = 2
+
+[node name="Pageination" type="BoxContainer" parent="Box"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+script = ExtResource("2_3u4dm")
+
+[node name="Backward" type="Button" parent="Box/Pageination"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "<"
+
+[node name="PageNumber" type="Label" parent="Box/Pageination"]
+layout_mode = 2
+text = "Page 1/[LOADING]"
+
+[node name="Forward" type="Button" parent="Box/Pageination"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = ">"
