@@ -39,9 +39,9 @@ var _totalSoundFiles : int = 0
 var _initialized: bool = false
 
 
-func Initialize(_plugin: EditorPlugin) -> void:
-	if _plugin:
-		_plugin = _plugin
+func Initialize(plugin: EditorPlugin) -> void:
+	if plugin:
+		_plugin = plugin
 	
 	_soundPreviewScene = load(SOUND_PREVIEW_SCENE)
 

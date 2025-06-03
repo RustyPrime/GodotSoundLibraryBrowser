@@ -33,15 +33,15 @@ var _currentPlayTimeInSeconds: float = 0.0
 var _initialized: bool = false
 
 
-func Initialize(_plugin : EditorPlugin, _dock : SoundLibraryDock, _soundFilePath : String, _subDirectory : String) -> void:
-	_plugin = _plugin
-	_dock = _dock
+func Initialize(plugin : EditorPlugin, dock : SoundLibraryDock, soundFilePath : String, subDirectory : String) -> void:
+	_plugin = plugin
+	_dock = dock
 
-	_soundFilePath = _soundFilePath
+	_soundFilePath = soundFilePath
 	_soundPlayer = _dock.soundPlayer
 	_libraryPath = _plugin._libraryPath
 	_saveToPath = _plugin._saveToPath
-	_subDirectory = _subDirectory
+	_subDirectory = subDirectory
 
 	if _plugin.useSameDirectoryStructureAsLibrary:
 		_resourcePath = _saveToPath.path_join(_subDirectory).path_join(_soundFilePath.get_file())

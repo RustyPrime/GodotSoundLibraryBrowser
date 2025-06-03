@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://xm0j717pa5t8"]
 
-[ext_resource type="Script" path="res://addons/SoundLibraryBrowser/src/sound_library_preview_item.gd" id="1_cuok1"]
+[ext_resource type="Script" uid="uid://f3qr1d0fgou8" path="res://addons/SoundLibraryBrowser/src/sound_library_preview_item.gd" id="1_cuok1"]
 
 [sub_resource type="Gradient" id="Gradient_di82o"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)

@@ -89,20 +89,20 @@ func SetupEditorSettings() -> void:
 		volumeSlider = GetSetting(SETTINGS_PATH.path_join(SETTINGS_VOLUME_SLIDER), 0.05)
 	
 
-func SetSetting(_setting: String, _value: Variant) -> void:
-	_editorSettings.set_setting(_setting, _value)
+func SetSetting(setting: String, value: Variant) -> void:
+	_editorSettings.set_setting(setting, value)
 
 
-func GetSetting(_setting: String, _default: Variant) -> Variant:
-	if _editorSettings.has_setting(_setting):
-		return _editorSettings.get_setting(_setting)
+func GetSetting(setting: String, default: Variant) -> Variant:
+	if _editorSettings.has_setting(setting):
+		return _editorSettings.get_setting(setting)
 	else:
-		return _default
+		return default
 
 
-func HasSetting(_setting: String) -> bool:
-	return _editorSettings.has_setting(_setting)
+func HasSetting(setting: String) -> bool:
+	return _editorSettings.has_setting(setting)
 
 
-func EraseSetting(_setting: String) -> void:
-	_editorSettings.erase(_setting)
+func EraseSetting(setting: String) -> void:
+	_editorSettings.erase(setting)
