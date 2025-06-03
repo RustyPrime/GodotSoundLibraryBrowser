@@ -81,7 +81,9 @@ func Initialize(plugin : EditorPlugin, dock : SoundLibraryDock, soundFilePath : 
 func Reset()-> void:
 	if _initialized:
 		TeardownSignals()
-
+		_useInProject.set_pressed_no_signal.call_deferred(false)
+		_copyResPath.set_deferred("disabled", true)
+		_copyUuid.set_deferred("disabled", true)
 		_soundProgress.set_value_no_signal(0.0)
 		_currentPlayTimeInSeconds = 0.0
 		_soundTime.text = str("00:00 / ", LOADING_MESSAGE)
@@ -166,8 +168,6 @@ func SetupSignals() -> void:
 	_useInProject.toggled.connect(_on_use_in_project_toggled)
 	_copyResPath.pressed.connect(_on_copy_res_path_pressed)
 	_copyUuid.pressed.connect(_on_copy_uuid_pressed)
-	_dock.deletion_confirmation_closed.connect(_on_deletion_confirmation_closed)
-	_dock.deletion_confirmation_confirmed.connect(_on_deletion_confirmation_confirmed)
 
 
 func TeardownSignals() -> void:
@@ -176,8 +176,6 @@ func TeardownSignals() -> void:
 	_useInProject.toggled.disconnect(_on_use_in_project_toggled)
 	_copyResPath.pressed.disconnect(_on_copy_res_path_pressed)
 	_copyUuid.pressed.disconnect(_on_copy_uuid_pressed)
-	_dock.deletion_confirmation_closed.disconnect(_on_deletion_confirmation_closed)
-	_dock.deletion_confirmation_confirmed.disconnect(_on_deletion_confirmation_confirmed)
 
 
 func LoadAudioStream() -> void:
@@ -236,13 +234,13 @@ func _on_use_in_project_toggled(pressed: bool) -> void:
 			print("File already exists at: " + _resourcePath)
 			return
 		if _soundFilePath != "":
-			var absolutePathToSave := ProjectSettings.globalize_path(_resourcePath)
+			var absolutePathToSave := ProjectSettings.globalize_path(_resourcePath.replace(_resourcePath.get_file(), ""))
 			if not DirAccess.dir_exists_absolute(absolutePathToSave) and DirAccess.make_dir_recursive_absolute(absolutePathToSave) != OK:
-				print("Failed to create directory: " + _resourcePath)
+				print("Failed to create directory: " + absolutePathToSave)
 				return
 			var file := FileAccess.open(_resourcePath, FileAccess.WRITE)
 			if not file:
-				print("Failed to open file for writing: " + _resourcePath)
+				print("Failed to open file for writing, error ("+str(FileAccess.get_open_error())+"): " + _resourcePath)
 				return
 			var bytes := FileAccess.get_file_as_bytes(_soundFilePath)
 			if bytes.is_empty():
@@ -255,6 +253,9 @@ func _on_use_in_project_toggled(pressed: bool) -> void:
 		_copyResPath.disabled = false
 		_copyUuid.disabled = false
 	else:
+		_dock.deletion_confirmation_closed.connect(_on_deletion_confirmation_closed)
+		_dock.deletion_confirmation_confirmed.connect(_on_deletion_confirmation_confirmed)
+
 		_dock.deleteConfirmationDialog.dialog_text = "Are you sure you want to delete the following resource from the project?\n " + _resourcePath
 		_dock.deleteConfirmationDialog.show()
 
@@ -309,7 +310,8 @@ func _on_sound_progress_value_changed(value: float) -> void:
 
 
 func _on_deletion_confirmation_closed() -> void:
-	pass
+	_dock.deletion_confirmation_closed.disconnect(_on_deletion_confirmation_closed)
+	_dock.deletion_confirmation_confirmed.disconnect(_on_deletion_confirmation_confirmed)
 
 
 func _on_deletion_confirmation_confirmed() -> void:
@@ -321,5 +323,7 @@ func _on_deletion_confirmation_confirmed() -> void:
 		_audioStream = null
 		ShowMessage.call_deferred(LOADING_MESSAGE)
 		WorkerThreadPool.add_task(LoadAudioStream) # Reload the audio stream from the library
-		
+	
+	_dock.deletion_confirmation_closed.disconnect(_on_deletion_confirmation_closed)
+	_dock.deletion_confirmation_confirmed.disconnect(_on_deletion_confirmation_confirmed)
 

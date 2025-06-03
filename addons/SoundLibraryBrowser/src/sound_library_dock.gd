@@ -108,11 +108,12 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	for soundPreview in _soundPreviews:
-		if soundPreview.taskId == -1:
+		var previewTaskId := soundPreview.taskId
+		if previewTaskId == -1:
 			continue
 
-		if not WorkerThreadPool.is_task_completed(soundPreview.taskId):
-			WorkerThreadPool.wait_for_task_completion(soundPreview.taskId)
+		if not WorkerThreadPool.is_task_completed(previewTaskId):
+			WorkerThreadPool.wait_for_task_completion(previewTaskId)
 
 ## Dock Methods
 func RemoveDock() -> void:
