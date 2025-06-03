@@ -39,8 +39,8 @@ func Initialize(plugin : EditorPlugin, dock : SoundLibraryDock, soundFilePath : 
 
 	_soundFilePath = soundFilePath
 	_soundPlayer = _dock.soundPlayer
-	_libraryPath = _plugin._libraryPath
-	_saveToPath = _plugin._saveToPath
+	_libraryPath = _plugin.libraryPath
+	_saveToPath = _plugin.saveToPath
 	_subDirectory = subDirectory
 
 	if _plugin.useSameDirectoryStructureAsLibrary:
