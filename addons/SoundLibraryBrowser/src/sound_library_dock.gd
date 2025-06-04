@@ -195,10 +195,12 @@ func LoadLibrary(forceResync : bool = false) -> void:
 		files = _plugin.libraryCache.soundLibrary.duplicate()
 	if files.size() == 0 or forceResync:
 		ShowMessage.call_deferred("No sounds found in cache. Searching library path...")
+		set_deferred("_totalSoundFiles", 0)
 		files = RecursiveDirectorySearch(_plugin.libraryPath)
 	
 	var pageNumber := 1
 	var itemsOnPage := 0
+	_soundDictionary.clear()
 	for soundFilePath in files:
 		if not IsValidFileType(soundFilePath):
 			continue
@@ -384,10 +386,13 @@ func _on_confirmation_confirmed() -> void:
 func _on_page_changed(newPage: int) -> void:
 	if newPage < 1:
 		newPage = 1
-	# Get soundfilepaths for the current page
+
+	# Decide wether to display all sounds or the filtered ones	
 	var selectedDictionary := _soundDictionary
 	if _filteredSoundDictionary.size() > 0 and _searchBar.text != "":
 		selectedDictionary = _filteredSoundDictionary
+
+	# Get soundfilepaths for the current page and update the previews
 	var soundPreviewIndex := 0
 	for soundFilePath in selectedDictionary.keys():
 		var pageNumber := selectedDictionary[soundFilePath]
@@ -400,6 +405,7 @@ func _on_page_changed(newPage: int) -> void:
 			soundPreview.UpdateSoundNameLabel(_searchBar.text.to_lower().split(" "))
 			soundPreviewIndex += 1
 
+	# When there is not enough items on a page, hide the unused previews
 	if soundPreviewIndex < _soundPreviews.size():
 		for i in range(soundPreviewIndex, _soundPreviews.size()):
 			_soundPreviews[i].visible = false
