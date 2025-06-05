@@ -1,7 +1,7 @@
 # Godot Sound Library Browser
 For Godot 4.4
 
-A sound library browser to browse YOUR sounds and music and move them to your project to prevent all of them being uploaded to version control.
+A sound library browser to browse YOUR sounds and music and move them to your project with one click.
 
 
 ## Use Case
