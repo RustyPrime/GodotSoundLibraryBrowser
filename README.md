@@ -48,10 +48,10 @@ This package is available as a plugin, meaning it can be added to an existing pr
 When editing an existing project:
 
 1.  Go to the `AssetLib` tab.
-2.  Search for "SoundLibraryBrowser".
-3.  Click on the result to open the plugin details.
+2.  Search for "Sound Library Browser" (Author: RustyPrime) or click here: [Godot AssetLib](https://godotengine.org/asset-library/asset/17277)
+3.  Click on the addon to show details.
 4.  Click to Download.
-5.  Check that contents are getting installed to `addons/` and there are no conflicts.
+5.  Make sure that the contents are installed to `addons/` and there are no conflicts.
 6.  Click to Install.
 8.  Enable the plugin from the Project Settings > Plugins tab.
 
@@ -63,8 +63,11 @@ When editing an existing project:
 5.  Enable the plugin from the Project Settings > Plugins tab.  
 
 
-
 ## My Setup
-- I'm using a raspberry pi with samba as a fileshare server.
-- After mapping the raspberry pi to a network drive in windows, my SO and i are able to browse sounds hosted on the raspberry.
- 
+- I'm using Godot 4.4.1
+- Using a raspberry pi with samba as a fileshare server.
+- After mapping the raspberry pi to a network drive in windows, my SO and i are able to browse sounds hosted on the raspberry within Godot,
+
+
+## Using this plugin to develop a shipped game? Tell me about it, i would love to feature them here!
+- A game by my SO and me, TBA
