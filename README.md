@@ -5,13 +5,10 @@ A sound library browser to browse YOUR sounds and music and move them to your pr
 
 
 ## Use Case
-Don't want to manually move sounds or music from your potentially massive library to your project?
-or
-Don't want to exclude a certain directory from version control that contains your library?
+Don't want to manually move sounds or music from your potentially massive library to your project? This addon is for you and your team!
 
 
 ## Features
-
 - Searches a given directory for sound files (.wav, .mp3 and .ogg)
 - Displays the sounds in a list where you listen to each one individualy
 - Allows you the search your library for keywords
@@ -24,14 +21,22 @@ Don't want to exclude a certain directory from version control that contains you
 - Navigate to the SoundLibrary Dock at the bottom of Godot
 - First Time Setup: It will show a settings panel where you can enter the path to your Sound-Library as well as enter the path where you want the sounds to end up inside your project.
 - After saving your settings it will search the library path for sounds (This may take some time)
+
+![Initial Setup](/usage/SoundLibraryBrowserPluginSetup.gif)
+
 - When finished, it will show you the first 10 sounds.
 - You can now search for keywords by using the search bar at the top
 - Navigate the Pages of Sounds using the arrwows at the bottom
 - Preview/Listen to sounds using the play button
 - You can skip forward or backward by using the "slider" next to the play button
+
+![Search and play](/usage/SoundLibraryBrowserPluginSearchAndPlay.gif)
+
 - Found something you like? Add it to your project by ticking the "Use in project?"-Checkbox
+- Changed your mind? Remove sounds by unticking the Checkbox
 - Copy res:// or uid:// paths using the respective buttons
 
+![Add or remove](/usage/SoundLibraryBrowserPluginAddAndRemove.gif)
 
 ## Installation
 
@@ -57,9 +62,6 @@ When editing an existing project:
 3.  Move the `addons/SoundLibraryBrowser` folder into your project's `addons/` folder.  
 5.  Enable the plugin from the Project Settings > Plugins tab.  
 
-
-## Links
-[License](LICENSE.md)
 
 
 ## My Setup

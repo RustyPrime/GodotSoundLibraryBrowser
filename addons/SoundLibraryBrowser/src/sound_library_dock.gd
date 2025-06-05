@@ -373,6 +373,8 @@ func _on_settings_button_pressed() -> void:
 		else:
 			SaveSettings()
 			HideSettingsMenu()
+			WorkerThreadPool.add_task(LoadLibrary)
+			
 
 
 func _on_confirmation_closed() -> void:
