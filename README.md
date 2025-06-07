@@ -48,7 +48,7 @@ This package is available as a plugin, meaning it can be added to an existing pr
 When editing an existing project:
 
 1.  Go to the `AssetLib` tab.
-2.  Search for "Sound Library Browser" (Author: RustyPrime) or click here: [Godot AssetLib](https://godotengine.org/asset-library/asset/17277)
+2.  Search for "Sound Library Browser" (Author: RustyPrime) or click here: [Godot AssetLib](https://godotengine.org/asset-library/asset/4082)
 3.  Click on the addon to show details.
 4.  Click to Download.
 5.  Make sure that the contents are installed to `addons/` and there are no conflicts.
