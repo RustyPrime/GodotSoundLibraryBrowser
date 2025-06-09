@@ -175,6 +175,7 @@ func SetupSignals() -> void:
 	deleteConfirmationDialog.confirmed.connect(_on_confirmation_confirmed)
 	deleteConfirmationDialog.close_requested.connect(_on_confirmation_closed)
 	_pageination.page_changed.connect(_on_page_changed)
+	_pageination.items_per_page_changed.connect(_on_items_per_page_changed)
 	_resyncButton.pressed.connect(_on_resnyc_button_pressed)
 
 
@@ -222,7 +223,7 @@ func LoadLibrary(forceResync : bool = false) -> void:
 	
 	_totalSoundsLabel.set_deferred("text", "Total: " + str(files.size()))
 
-	if _soundPreviews.size() == 0:
+	if _soundPreviews.size() < _pageination.GetItemsPerPage():
 		ShowMessage.call_deferred("Found " + str(files.size()) + " sound files in library. Setting up preview containers...")
 		# Instantiate the previews based on the number of items per page
 		var taskId := WorkerThreadPool.add_task(LoadPreviews)
@@ -240,7 +241,8 @@ func LoadLibrary(forceResync : bool = false) -> void:
 
 
 func LoadPreviews() -> void:
-	for i in _pageination.GetItemsPerPage():
+	var existingPreviews := _soundPreviews.size()
+	for i in _pageination.GetItemsPerPage() - existingPreviews:
 		var soundPreview := _soundPreviewScene.instantiate()
 		_soundPreviews.append.call_deferred(soundPreview)
 		_previewsContainer.add_child.call_deferred(soundPreview)
@@ -374,8 +376,6 @@ func _on_settings_button_pressed() -> void:
 			SaveSettings()
 			HideSettingsMenu()
 			WorkerThreadPool.add_task(LoadLibrary)
-			
-
 
 func _on_confirmation_closed() -> void:
 	deletion_confirmation_closed.emit()
@@ -411,6 +411,10 @@ func _on_page_changed(newPage: int) -> void:
 	if soundPreviewIndex < _soundPreviews.size():
 		for i in range(soundPreviewIndex, _soundPreviews.size()):
 			_soundPreviews[i].visible = false
+
+
+func _on_items_per_page_changed(itemsPerPage : int) -> void:
+	WorkerThreadPool.add_task(LoadLibrary, true)
 
 
 func _on_resnyc_button_pressed() -> void:

@@ -147,6 +147,10 @@ layout_mode = 2
 alignment = 1
 script = ExtResource("2_ucfry")
 
+[node name="Container2" type="Container" parent="Box/Pageination"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="Backward" type="Button" parent="Box/Pageination"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -162,3 +166,22 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = ">"
+
+[node name="Container" type="Container" parent="Box/Pageination"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MenuButton" type="MenuButton" parent="Box/Pageination"]
+layout_mode = 2
+text = "Items per page: 10"
+item_count = 5
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "5"
+popup/item_1/id = 1
+popup/item_2/text = "10"
+popup/item_2/id = 2
+popup/item_3/text = "20"
+popup/item_3/id = 3
+popup/item_4/text = "50"
+popup/item_4/id = 4
