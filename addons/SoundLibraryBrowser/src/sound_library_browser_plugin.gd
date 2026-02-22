@@ -23,7 +23,7 @@ var icons: Dictionary[String, Texture2D] = {}
 var libraryCache : SoundLibraryCache
 
 ## Private variables
-var _libraryDock : SoundLibraryDock
+var _libraryDock : EditorDock
 var _editorSettings : EditorSettings
 
 
@@ -38,8 +38,9 @@ func _enter_tree() -> void:
 
 	SetupIcons()
 
-	_libraryDock = load(DOCK_SCENE).instantiate()
+	_libraryDock = load(DOCK_SCENE).instantiate() as SoundLibraryDock
 	_libraryDock.Initialize(self)
+	add_dock(_libraryDock)
 
 
 func _exit_tree() -> void:

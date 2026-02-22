@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://xm0j717pa5t8"]
+[gd_scene format=3 uid="uid://xm0j717pa5t8"]
 
 [ext_resource type="Script" uid="uid://f3qr1d0fgou8" path="res://addons/SoundLibraryBrowser/src/sound_library_preview_item.gd" id="1_cuok1"]
 
@@ -10,10 +10,10 @@ gradient = SubResource("Gradient_di82o")
 width = 5
 height = 20
 
-[node name="SoundLibraryPreviewItem" type="VBoxContainer"]
+[node name="SoundLibraryPreviewItem" type="VBoxContainer" unique_id=387736146]
 script = ExtResource("1_cuok1")
 
-[node name="SoundName" type="RichTextLabel" parent="."]
+[node name="SoundName" type="RichTextLabel" parent="." unique_id=229052492]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 bbcode_enabled = true
@@ -21,22 +21,22 @@ text = "Song [b]Name[/b]"
 fit_content = true
 scroll_active = false
 
-[node name="PlaybackContainer" type="HBoxContainer" parent="."]
+[node name="PlaybackContainer" type="HBoxContainer" parent="." unique_id=329935437]
 layout_mode = 2
 
-[node name="Spacing" type="Panel" parent="PlaybackContainer"]
+[node name="Spacing" type="Panel" parent="PlaybackContainer" unique_id=1587593461]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="PlaybackContainer"]
+[node name="PlayButton" type="Button" parent="PlaybackContainer" unique_id=1732951483]
 layout_mode = 2
 text = ">"
 
-[node name="SoundProgressPanel" type="Panel" parent="PlaybackContainer"]
+[node name="SoundProgressPanel" type="Panel" parent="PlaybackContainer" unique_id=1405043851]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="SoundProgress" type="HSlider" parent="PlaybackContainer/SoundProgressPanel"]
+[node name="SoundProgress" type="HSlider" parent="PlaybackContainer/SoundProgressPanel" unique_id=1448950610]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,29 +45,29 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_icons/grabber = SubResource("GradientTexture2D_p36na")
 
-[node name="SoundTime" type="Label" parent="PlaybackContainer"]
+[node name="SoundTime" type="Label" parent="PlaybackContainer" unique_id=825370386]
 layout_mode = 2
 text = "0 / 0"
 
-[node name="UseInProject" type="CheckBox" parent="PlaybackContainer"]
+[node name="UseInProject" type="CheckBox" parent="PlaybackContainer" unique_id=1020073305]
 layout_mode = 2
 text = "Use in project?"
 
-[node name="CopyResPath" type="Button" parent="PlaybackContainer"]
+[node name="CopyResPath" type="Button" parent="PlaybackContainer" unique_id=1507397489]
 layout_mode = 2
 disabled = true
 text = "Copy res://"
 
-[node name="CopyUuid" type="Button" parent="PlaybackContainer"]
+[node name="CopyUuid" type="Button" parent="PlaybackContainer" unique_id=200460545]
 layout_mode = 2
 disabled = true
 text = "Copy uuid://"
 
-[node name="MessageContainer" type="HBoxContainer" parent="."]
+[node name="MessageContainer" type="HBoxContainer" parent="." unique_id=1118273136]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="MessageLabel" type="Label" parent="MessageContainer"]
+[node name="MessageLabel" type="Label" parent="MessageContainer" unique_id=670630650]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Loading..."

@@ -1,35 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtv6w01hgjreb"]
+[gd_scene format=3 uid="uid://dtv6w01hgjreb"]
 
 [ext_resource type="Script" uid="uid://c3fcfqs3u5vrx" path="res://addons/SoundLibraryBrowser/src/sound_library_dock.gd" id="1_plle7"]
 [ext_resource type="Script" uid="uid://bh22fjjm7tim3" path="res://addons/SoundLibraryBrowser/src/sound_library_pageination.gd" id="2_ucfry"]
 
-[node name="SoundLibraryDock" type="PanelContainer"]
+[node name="SoundLibraryDock" type="EditorDock" unique_id=688745594]
 custom_minimum_size = Vector2(256, 95)
 offset_right = 766.0
 offset_bottom = 226.0
+title = "Sound Library Browser"
+default_slot = 8
 script = ExtResource("1_plle7")
 
-[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1885668444]
 unique_name_in_owner = true
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=1002686771]
 unique_name_in_owner = true
 initial_position = 1
 
-[node name="Box" type="BoxContainer" parent="."]
+[node name="Box" type="BoxContainer" parent="." unique_id=835258677]
 layout_mode = 2
 size_flags_vertical = 3
 vertical = true
 
-[node name="Toolbar" type="BoxContainer" parent="Box"]
+[node name="Toolbar" type="BoxContainer" parent="Box" unique_id=856771538]
 layout_mode = 2
 
-[node name="VolumeLabel" type="Label" parent="Box/Toolbar"]
+[node name="VolumeLabel" type="Label" parent="Box/Toolbar" unique_id=292285184]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Volume:"
 
-[node name="VolumeSlider" type="HSlider" parent="Box/Toolbar"]
+[node name="VolumeSlider" type="HSlider" parent="Box/Toolbar" unique_id=1488387321]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -37,141 +39,141 @@ size_flags_horizontal = 4
 size_flags_vertical = 1
 value = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="Box/Toolbar"]
+[node name="VSeparator" type="VSeparator" parent="Box/Toolbar" unique_id=154033955]
 layout_mode = 2
 
-[node name="SearchBar" type="LineEdit" parent="Box/Toolbar"]
+[node name="SearchBar" type="LineEdit" parent="Box/Toolbar" unique_id=1101244723]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "pirate music"
 
-[node name="SearchButton" type="Button" parent="Box/Toolbar"]
+[node name="SearchButton" type="Button" parent="Box/Toolbar" unique_id=689758568]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 text = "Search"
 
-[node name="TotalSoundsLabel" type="Label" parent="Box/Toolbar"]
+[node name="TotalSoundsLabel" type="Label" parent="Box/Toolbar" unique_id=300134758]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Total: 0"
 
-[node name="VSeparator2" type="VSeparator" parent="Box/Toolbar"]
+[node name="VSeparator2" type="VSeparator" parent="Box/Toolbar" unique_id=1365268983]
 layout_mode = 2
 
-[node name="ResyncButton" type="Button" parent="Box/Toolbar"]
+[node name="ResyncButton" type="Button" parent="Box/Toolbar" unique_id=1381294242]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 text = "Resync"
 
-[node name="SettingsButton" type="Button" parent="Box/Toolbar"]
+[node name="SettingsButton" type="Button" parent="Box/Toolbar" unique_id=939980235]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 text = "Settings"
 
-[node name="HSeparator" type="HSeparator" parent="Box"]
+[node name="HSeparator" type="HSeparator" parent="Box" unique_id=804389491]
 layout_mode = 2
 
-[node name="MessageContainer" type="BoxContainer" parent="Box"]
+[node name="MessageContainer" type="BoxContainer" parent="Box" unique_id=1500049514]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MessageLabel" type="Label" parent="Box/MessageContainer"]
+[node name="MessageLabel" type="Label" parent="Box/MessageContainer" unique_id=1967308079]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Loading..."
 
-[node name="PreviewsScrollContainer" type="ScrollContainer" parent="Box"]
+[node name="PreviewsScrollContainer" type="ScrollContainer" parent="Box" unique_id=1995658813]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PreviewsContainer" type="VBoxContainer" parent="Box/PreviewsScrollContainer"]
+[node name="PreviewsContainer" type="VBoxContainer" parent="Box/PreviewsScrollContainer" unique_id=480801175]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SettingsScrollContainer" type="ScrollContainer" parent="Box"]
+[node name="SettingsScrollContainer" type="ScrollContainer" parent="Box" unique_id=277354759]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SettingsContainer" type="VBoxContainer" parent="Box/SettingsScrollContainer"]
+[node name="SettingsContainer" type="VBoxContainer" parent="Box/SettingsScrollContainer" unique_id=1388209119]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Box/SettingsScrollContainer/SettingsContainer"]
+[node name="Label" type="Label" parent="Box/SettingsScrollContainer/SettingsContainer" unique_id=1996311182]
 layout_mode = 2
 text = "Where is your sound-library located? (network path or an absolute filesystem path)"
 
-[node name="LibraryPath" type="LineEdit" parent="Box/SettingsScrollContainer/SettingsContainer"]
+[node name="LibraryPath" type="LineEdit" parent="Box/SettingsScrollContainer/SettingsContainer" unique_id=651502637]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "e.g. F:/Assets/SoundLibrary"
 
-[node name="Label2" type="Label" parent="Box/SettingsScrollContainer/SettingsContainer"]
+[node name="Label2" type="Label" parent="Box/SettingsScrollContainer/SettingsContainer" unique_id=1068034546]
 layout_mode = 2
 text = "Where should the sounds be copied to? (a \"res://\" path. I.E. somewhere in your project)"
 
-[node name="ProjectPath" type="LineEdit" parent="Box/SettingsScrollContainer/SettingsContainer"]
+[node name="ProjectPath" type="LineEdit" parent="Box/SettingsScrollContainer/SettingsContainer" unique_id=409497717]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "e.g. res://Sounds"
 
-[node name="Label3" type="Label" parent="Box/SettingsScrollContainer/SettingsContainer"]
+[node name="Label3" type="Label" parent="Box/SettingsScrollContainer/SettingsContainer" unique_id=465718419]
 layout_mode = 2
 text = "Should the same directory structure be used as in your library?"
 
-[node name="KeepDirectoryStructure" type="CheckBox" parent="Box/SettingsScrollContainer/SettingsContainer"]
+[node name="KeepDirectoryStructure" type="CheckBox" parent="Box/SettingsScrollContainer/SettingsContainer" unique_id=1553002357]
 unique_name_in_owner = true
 layout_mode = 2
 button_pressed = true
 text = "(yes = directories will be created, no = all sounds will be put into the same project folder)"
 
-[node name="HSeparator2" type="HSeparator" parent="Box"]
+[node name="HSeparator2" type="HSeparator" parent="Box" unique_id=2046669624]
 layout_mode = 2
 
-[node name="Pageination" type="BoxContainer" parent="Box"]
+[node name="Pageination" type="BoxContainer" parent="Box" unique_id=684968439]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 script = ExtResource("2_ucfry")
 
-[node name="Container2" type="Container" parent="Box/Pageination"]
+[node name="Container2" type="Container" parent="Box/Pageination" unique_id=182122266]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Backward" type="Button" parent="Box/Pageination"]
+[node name="Backward" type="Button" parent="Box/Pageination" unique_id=1769908655]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "<"
 
-[node name="PageNumber" type="Label" parent="Box/Pageination"]
+[node name="PageNumber" type="Label" parent="Box/Pageination" unique_id=2010046040]
 layout_mode = 2
 text = "Page 1/1"
 
-[node name="Forward" type="Button" parent="Box/Pageination"]
+[node name="Forward" type="Button" parent="Box/Pageination" unique_id=1544296226]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = ">"
 
-[node name="Container" type="Container" parent="Box/Pageination"]
+[node name="Container" type="Container" parent="Box/Pageination" unique_id=1363953109]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MenuButton" type="MenuButton" parent="Box/Pageination"]
+[node name="MenuButton" type="MenuButton" parent="Box/Pageination" unique_id=196989630]
 layout_mode = 2
 text = "Items per page: 10"
 item_count = 5

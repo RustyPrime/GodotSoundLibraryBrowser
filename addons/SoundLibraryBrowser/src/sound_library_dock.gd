@@ -2,7 +2,7 @@
 # Asset Dock for SoundLibraryViewer
 @tool
 class_name SoundLibraryDock
-extends PanelContainer
+extends EditorDock
 
 signal deletion_confirmation_closed
 signal deletion_confirmation_confirmed
@@ -81,14 +81,12 @@ func Initialize(plugin: EditorPlugin) -> void:
 		_saveToPathLineEdit.text = _plugin.saveToPath
 		_useLibraryStructureCheckBox.button_pressed = _plugin.useSameDirectoryStructureAsLibrary
 		_volumeSlider.value = _plugin.volumeSlider
-		
+
 		SetSoundPlayerVolume(_volumeSlider.value)
 		
 		ShowMessage("Loading sounds from library...")
 		# Load the lib from cache or recursively search the library path for sound files
 		WorkerThreadPool.add_task(LoadLibrary, true)
-
-		
 	else:
 		_previewsScrollContainer.visible = false
 		_settingsScrollContainer.visible = true
@@ -96,7 +94,6 @@ func Initialize(plugin: EditorPlugin) -> void:
 
 	
 	_initialized = true
-	UpdateDock()
 
 
 func _ready() -> void:
@@ -117,17 +114,10 @@ func _exit_tree() -> void:
 
 ## Dock Methods
 func RemoveDock() -> void:
-	_plugin.remove_control_from_bottom_panel(self)
-
-
-func UpdateDock() -> void:
-	if not _initialized:
-		return
-		
-	RemoveDock()
-	var title := "SoundLibrary"
-	_plugin.add_control_to_bottom_panel(self,  title)
-	_plugin.make_bottom_panel_item_visible(self)
+	var soundPreviews = _soundPreviews.duplicate()
+	for i in soundPreviews.size() - 1:
+		soundPreviews[i].queue_free()
+	_plugin.remove_dock(self)
 
 
 func ShowMessage(message: String) -> void:
@@ -376,6 +366,8 @@ func _on_settings_button_pressed() -> void:
 			SaveSettings()
 			HideSettingsMenu()
 			WorkerThreadPool.add_task(LoadLibrary)
+			
+
 
 func _on_confirmation_closed() -> void:
 	deletion_confirmation_closed.emit()

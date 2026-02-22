@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SoundLibraryCache" load_steps=2 format=3 uid="uid://bsp12xq2qfjxe"]
+[gd_resource type="Resource" script_class="SoundLibraryCache" format=3 uid="uid://bsp12xq2qfjxe"]
 
 [ext_resource type="Script" uid="uid://qlxk4ff1pgmk" path="res://addons/SoundLibraryBrowser/src/sound_library_cache.gd" id="1_jahqd"]
 

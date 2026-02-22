@@ -18,12 +18,12 @@ var _itemsPerPage : int = 10
 
 
 func _ready() -> void:
-	_pageForward = $Forward
-	_pageBackward = $Backward
-	_pageLabel = $PageNumber
-	_menuButton = $MenuButton
+	_pageForward = get_node("Forward")
+	_pageBackward = get_node("Backward")
+	_pageLabel = get_node("PageNumber")
+	_menuButton = get_node("MenuButton")
 	_menuPopup = _menuButton.get_popup()
-	
+
 	_pageForward.pressed.connect(_on_page_forward_pressed)
 	_pageBackward.pressed.connect(_on_page_backward_pressed)
 	_menuPopup.id_pressed.connect(_on_dropdown_changed)
@@ -53,7 +53,8 @@ func _on_dropdown_changed(id : int) -> void:
 
 func SetCurrentPage(page : int) -> void:
 	_currentPage = page
-	_pageLabel.text = str(_currentPage) + " / " + str(_totalPages)
+	if _pageLabel != null:
+		_pageLabel.text = str(_currentPage) + " / " + str(_totalPages)
 	page_changed.emit(_currentPage)
 
 
@@ -65,15 +66,21 @@ func SetTotalPages(itemCount : int) -> void:
 	
 
 func DisablePaginationNavigation() -> void:
-	_pageForward.disabled = true
-	_pageBackward.disabled = true
-	_pageLabel.text = "1 / 1"
+	if _pageForward != null:
+		_pageForward.disabled = true
+	if _pageBackward != null:
+		_pageBackward.disabled = true
+	if _pageLabel != null:
+		_pageLabel.text = "1 / 1"
 
 
 func EnablePaginationNavigation() -> void:
-	_pageForward.disabled = false
-	_pageBackward.disabled = false
-	_pageLabel.text = str(_currentPage) + " / " + str(_totalPages)
+	if _pageForward != null:
+		_pageForward.disabled = false
+	if _pageBackward != null:
+		_pageBackward.disabled = false
+	if _pageLabel != null:
+		_pageLabel.text = str(_currentPage) + " / " + str(_totalPages)
 	if _totalPages <= 1:
 		_totalPages = 1
 		DisablePaginationNavigation()
