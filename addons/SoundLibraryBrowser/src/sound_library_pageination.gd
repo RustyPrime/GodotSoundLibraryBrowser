@@ -62,6 +62,9 @@ func SetTotalPages(itemCount : int) -> void:
 	_totalItems = itemCount
 	_totalPages = int(itemCount/ _itemsPerPage)
 	
+	if itemCount % _itemsPerPage > 0:
+		_totalPages += 1
+	
 	EnablePaginationNavigation()
 	
 

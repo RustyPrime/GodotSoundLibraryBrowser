@@ -51,18 +51,18 @@ func Initialize(plugin : EditorPlugin, dock : SoundLibraryDock, soundFilePath : 
 	if _soundPlayer == null or _soundFilePath == "":
 		return
 
-	_playButton = $PlaybackContainer/PlayButton
-	_soundProgress = $PlaybackContainer/SoundProgressPanel/SoundProgress
-	_soundTime = $PlaybackContainer/SoundTime
-	_soundNameLabel = $SoundName
+	_playButton =  get_node("PlaybackContainer/PlayButton")
+	_soundProgress =  get_node("PlaybackContainer/SoundProgressPanel/SoundProgress")
+	_soundTime =  get_node("PlaybackContainer/SoundTime")
+	_soundNameLabel =  get_node("SoundName")
 
-	_useInProject = $PlaybackContainer/UseInProject
-	_copyResPath = $PlaybackContainer/CopyResPath
-	_copyUuid = $PlaybackContainer/CopyUuid
+	_useInProject = get_node("PlaybackContainer/UseInProject")
+	_copyResPath =  get_node("PlaybackContainer/CopyResPath")
+	_copyUuid =  get_node("PlaybackContainer/CopyUuid")
 
-	_playbackContainer = $PlaybackContainer
-	_messageContainer = $MessageContainer
-	_messageLabel = $MessageContainer/MessageLabel
+	_playbackContainer =  get_node("PlaybackContainer")
+	_messageContainer =  get_node("MessageContainer")
+	_messageLabel =  get_node("MessageContainer/MessageLabel")
 	
 	UpdateSoundNameLabel()
 
@@ -71,6 +71,11 @@ func Initialize(plugin : EditorPlugin, dock : SoundLibraryDock, soundFilePath : 
 	ShowMessage("Loading audio stream...")
 	# Load the audio stream in a worker thread not block the main thread
 	taskId = WorkerThreadPool.add_task(LoadAudioStream, true, str("Loading audio stream from: ", _soundFilePath.get_file()))
+	
+	if FileAccess.file_exists(_resourcePath):
+		_useInProject.set_pressed_no_signal(true)
+		_copyResPath.disabled = false
+		_copyUuid.disabled = false
 	
 	if EditorInterface.get_edited_scene_root() != self:
 		SetPlayButtonIcon(_plugin.PLAY_ICON)
@@ -81,9 +86,9 @@ func Initialize(plugin : EditorPlugin, dock : SoundLibraryDock, soundFilePath : 
 func Reset()-> void:
 	if _initialized:
 		TeardownSignals()
-		_useInProject.set_pressed_no_signal.call_deferred(false)
-		_copyResPath.set_deferred("disabled", true)
-		_copyUuid.set_deferred("disabled", true)
+		_useInProject.set_pressed_no_signal(false)
+		_copyResPath.disabled = true
+		_copyUuid.disabled = true
 		_soundProgress.set_value_no_signal(0.0)
 		_currentPlayTimeInSeconds = 0.0
 		_soundTime.text = str("00:00 / ", LOADING_MESSAGE)
@@ -182,9 +187,6 @@ func LoadAudioStream() -> void:
 	var fileToLoad := _soundFilePath
 	if FileAccess.file_exists(_resourcePath):
 		fileToLoad = _resourcePath
-		_useInProject.set_pressed_no_signal(true)
-		_copyResPath.disabled = false
-		_copyUuid.disabled = false
 
 	if fileToLoad == "":
 		return
